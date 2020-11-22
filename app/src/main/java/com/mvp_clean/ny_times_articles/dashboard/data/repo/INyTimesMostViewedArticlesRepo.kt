@@ -13,5 +13,5 @@ internal interface INyTimesMostViewedArticlesRepo {
     fun getNyTimesMostViewedArticles(
         @Path("day") day: Int?,
         @Query("api-key")apiKey: String
-                                     ): Observable<NYTimesMostPopularArticlesEntity?>?
+     ): Observable<NYTimesMostPopularArticlesEntity?>?
 }

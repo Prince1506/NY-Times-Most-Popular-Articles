@@ -12,7 +12,7 @@ import javax.inject.Inject;
 import io.reactivex.Observable;
 
 
-public class NYTimeArticlesDashboardUseCase extends UseCase<Integer, NYTimesMostPopularArticlesDataModel> {
+public class NYTimeArticlesDashboardUseCase extends UseCase<Integer, NyTimesMostViewArticlesDataModel> {
 
     @Inject
     public NYTimesMostViewedArticlesRepo NYTimesMostViewedArticlesRepo;
@@ -30,7 +30,7 @@ public class NYTimeArticlesDashboardUseCase extends UseCase<Integer, NYTimesMost
 
     @NotNull
     @Override
-    protected Observable<NYTimesMostPopularArticlesDataModel> createUseCaseObservable(Integer days) {
+    protected Observable<NyTimesMostViewArticlesDataModel> createUseCaseObservable(Integer days) {
         return NYTimesMostViewedArticlesRepo.getNyTimesMostViewedArticles(
                 days,
                 IKeyConstant.Companion.getApiKeyVal()

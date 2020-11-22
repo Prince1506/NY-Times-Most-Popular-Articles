@@ -1,4 +1,4 @@
-package com.mvp_clean.ny_times_articles.core.view.presenter
+package com.mvp_clean.ny_times_articles.core.presenter
 
 import com.mvp_clean.ny_times_articles.core.view.IBaseView
 

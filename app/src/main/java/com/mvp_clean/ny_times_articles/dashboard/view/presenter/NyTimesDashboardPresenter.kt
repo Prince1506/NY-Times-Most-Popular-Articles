@@ -1,10 +1,9 @@
 package com.mvp_clean.ny_times_articles.dashboard.view.presenter
 
 import com.mvp_clean.ny_times_articles.core.constants.IKeyConstant
-import com.mvp_clean.ny_times_articles.core.view.presenter.BasePresenter
+import com.mvp_clean.ny_times_articles.core.presenter.BasePresenter
 import com.mvp_clean.ny_times_articles.dashboard.domain.NYTimeArticlesDashboardUseCase
 import com.mvp_clean.ny_times_articles.dashboard.domain.NYTimesMostPopularArticlesResponseDataToViewMapper
-import com.mvp_clean.ny_times_articles.dashboard.domain.NYTimesMostPopularArticlesResponseEntityToDataMapper
 import com.mvp_clean.ny_times_articles.dashboard.view.INyTimesDashboardView
 import com.mvp_clean.ny_times_articles.dashboard.view.activities.NyTimesDashboardActivity
 import java.net.SocketTimeoutException

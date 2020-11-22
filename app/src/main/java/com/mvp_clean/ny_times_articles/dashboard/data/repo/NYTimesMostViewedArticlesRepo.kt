@@ -7,16 +7,18 @@ import io.reactivex.Observable
 import javax.inject.Inject
 
 
-class NYTimesMostViewedArticlesRepo @Inject constructor(networkHelper: NetworkHelper) : INyTimesMostViewedArticlesRepo {
-    private val networkHelper: NetworkHelper
+class NYTimesMostViewedArticlesRepo @Inject constructor(
+    networkHelper: NetworkHelper
+) : INyTimesMostViewedArticlesRepo {
 
-    init {
-        this.networkHelper = networkHelper
-    }
+    private val networkHelper: NetworkHelper = networkHelper
+
 
     override fun getNyTimesMostViewedArticles(day: Int?, apiKey: String): Observable<NYTimesMostPopularArticlesEntity?>? {
-        return networkHelper.createRetrofitApi(BASE_URL, INyTimesMostViewedArticlesRepo::class.java)
-            ?.getNyTimesMostViewedArticles(day, apiKey)
+        return networkHelper.createRetrofitApi(
+            BASE_URL,
+            INyTimesMostViewedArticlesRepo::class.java
+        )?.getNyTimesMostViewedArticles(day, apiKey)
     }
 
 }
