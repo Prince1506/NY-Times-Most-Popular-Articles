@@ -1,6 +1,5 @@
 package com.mvp_clean.ny_times_articles.dashboard.view.activities
 
-import android.app.Fragment
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -13,9 +12,9 @@ import com.mvp_clean.ny_times_articles.core.callback.IRetryCallBack
 import com.mvp_clean.ny_times_articles.core.constants.IKeyConstant
 import com.mvp_clean.ny_times_articles.core.di.CoreDI
 import com.mvp_clean.ny_times_articles.core.view.activities.BaseActivity
-import com.mvp_clean.ny_times_articles.dashboard.domain.NyTimesMostViewArticlesViewModels
+import com.mvp_clean.ny_times_articles.dashboard.domain.NyTimesMostViewArticlesViewModel
 import com.mvp_clean.ny_times_articles.dashboard.view.INyTimesDashboardView
-import com.mvp_clean.ny_times_articles.dashboard.view.fragments.home.HomeFragment
+import com.mvp_clean.ny_times_articles.dashboard.view.fragments.home.NYTimesHomeFragment
 import com.mvp_clean.ny_times_articles.dashboard.view.presenter.NyTimesDashboardPresenter
 import kotlinx.android.synthetic.main.app_bar_main.*
 import javax.inject.Inject
@@ -76,10 +75,10 @@ class NyTimesDashboardActivity : BaseActivity(), INyTimesDashboardView, IRetryCa
     override fun showRetry() {
     }
 
-    override fun showArticles(nyTimesMostViewArticlesViewModels: NyTimesMostViewArticlesViewModels) {
+    override fun showArticles(nyTimesMostViewArticlesViewModels: NyTimesMostViewArticlesViewModel) {
         val bundle = Bundle()
         bundle.putParcelable(IKeyConstant.articleMostViewedList, nyTimesMostViewArticlesViewModels)
-        changeFragment(HomeFragment(), bundle, false )
+        changeFragment(NYTimesHomeFragment(), bundle, false )
     }
 
     fun changeFragment(fragment: androidx.fragment.app.Fragment,

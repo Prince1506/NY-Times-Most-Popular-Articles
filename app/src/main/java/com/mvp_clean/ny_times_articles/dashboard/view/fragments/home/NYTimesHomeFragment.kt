@@ -8,11 +8,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.mvp_clean.ny_times_articles.R
 import com.mvp_clean.ny_times_articles.core.constants.IKeyConstant
 import com.mvp_clean.ny_times_articles.core.view.fragments.BaseFragment
-import com.mvp_clean.ny_times_articles.dashboard.domain.NyTimesMostViewArticlesViewModels
+import com.mvp_clean.ny_times_articles.dashboard.domain.NyTimesMostViewArticlesViewModel
 import com.mvp_clean.ny_times_articles.dashboard.view.adapters.NYTimeseMostViewedArticlesAdapter
 import kotlinx.android.synthetic.main.fragment_home.*
 
-class HomeFragment : BaseFragment() {
+class NYTimesHomeFragment : BaseFragment() {
 
     private lateinit var homeViewModel: HomeViewModel
 
@@ -28,12 +28,12 @@ class HomeFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         var mostViewedArticlesList =
-            arguments?.getParcelable<NyTimesMostViewArticlesViewModels>(IKeyConstant.articleMostViewedList)!!
+            arguments?.getParcelable<NyTimesMostViewArticlesViewModel>(IKeyConstant.articleMostViewedList)!!
 
         showList(mostViewedArticlesList)
     }
 
-    fun showList(mostViewedArticlesList: NyTimesMostViewArticlesViewModels) {
+    fun showList(mostViewedArticlesList: NyTimesMostViewArticlesViewModel) {
         rv_nytimes_articles_mostviewd_list.adapter = NYTimeseMostViewedArticlesAdapter(
             this,
             mostViewedArticlesList.resultEntities

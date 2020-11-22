@@ -7,16 +7,16 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.mvp_clean.ny_times_articles.R
 import com.mvp_clean.ny_times_articles.dashboard.data.model.ResultEntity
-import com.mvp_clean.ny_times_articles.dashboard.view.fragments.home.HomeFragment
+import com.mvp_clean.ny_times_articles.dashboard.view.fragments.home.NYTimesHomeFragment
 import kotlinx.android.synthetic.main.dashboard_articles_item.view.*
 
 
 class NYTimeseMostViewedArticlesAdapter(
-    homeFragment: HomeFragment,
+    NYTimesHomeFragment: NYTimesHomeFragment,
     resultEntities: List<ResultEntity>
 ) : RecyclerView.Adapter<NYTimeseMostViewedArticlesAdapter.MyViewHolder>() {
 
-    val homeFragment = homeFragment
+    val homeFragment = NYTimesHomeFragment
     val resultEntities = resultEntities
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {

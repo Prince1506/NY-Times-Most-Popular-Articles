@@ -4,11 +4,11 @@ import javax.inject.Inject
 
 class NYTimesMostPopularArticlesResponseDataToViewMapper @Inject constructor() {
 
-    fun mapEntityToData(
+    fun mapDataToViewMapper(
         nyTimesMostPopularArticlesDataModel: NyTimesMostViewArticlesDataModel
-    ): NyTimesMostViewArticlesViewModels =
+    ): NyTimesMostViewArticlesViewModel =
 
-        NyTimesMostViewArticlesViewModels(
+        NyTimesMostViewArticlesViewModel(
             nyTimesMostPopularArticlesDataModel.status,
             nyTimesMostPopularArticlesDataModel.copyright,
             nyTimesMostPopularArticlesDataModel.numResults,

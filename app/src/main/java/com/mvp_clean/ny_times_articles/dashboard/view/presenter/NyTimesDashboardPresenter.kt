@@ -12,12 +12,12 @@ import javax.inject.Inject
 class NyTimesDashboardPresenter :
     BasePresenter<INyTimesDashboardView>, INyTimesDashboardPresenter{
 
-    private val nYTimeArticlesDashboardUseCase: NYTimeArticlesDashboardUseCase?
-    private val nyTimesMostPopularArticlesResponseDataToViewMapper: NYTimesMostPopularArticlesResponseDataToViewMapper
+    public lateinit var nYTimeArticlesDashboardUseCase: NYTimeArticlesDashboardUseCase
+    public lateinit var nyTimesMostPopularArticlesResponseDataToViewMapper: NYTimesMostPopularArticlesResponseDataToViewMapper
 
     @Inject
     public constructor(
-        nYTimeArticlesDashboardUseCase: NYTimeArticlesDashboardUseCase?,
+        nYTimeArticlesDashboardUseCase: NYTimeArticlesDashboardUseCase,
         nyTimesMostPopularArticlesResponseDataToViewMapper: NYTimesMostPopularArticlesResponseDataToViewMapper
     ) {
         this.nYTimeArticlesDashboardUseCase = nYTimeArticlesDashboardUseCase
@@ -25,7 +25,6 @@ class NyTimesDashboardPresenter :
     }
 
     override fun getArticles(previousDate: Int) {
-        try {
             if (!(view?.isNetworkAvailable(view as NyTimesDashboardActivity?))!!) {
                 view?.startServerApiRetryScreen(
                     IKeyConstant.noInternet,
@@ -34,18 +33,14 @@ class NyTimesDashboardPresenter :
             } else {
                 view?.showProgress()
                 nYTimeArticlesDashboardUseCase?.execute(previousDate)?.subscribe({ videoResponseDataModel ->
-                    try {
                         if (view != null) {
                             view?.showArticles(
-                                nyTimesMostPopularArticlesResponseDataToViewMapper.mapEntityToData(
+                                nyTimesMostPopularArticlesResponseDataToViewMapper.mapDataToViewMapper(
                                     videoResponseDataModel
                                 )
                             )
                             view?.hideProgress()
                         }
-                    } catch (e: Exception) {
-                        e.printStackTrace()
-                    }
                 }) { throwable: Throwable? ->
                     if (view == null) return@subscribe
                     view?.hideProgress()
@@ -56,10 +51,5 @@ class NyTimesDashboardPresenter :
                     }
                 }
             }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
     }
-
-
 }
