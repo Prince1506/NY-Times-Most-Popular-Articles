@@ -1,22 +1,20 @@
 package com.mvp_clean.ny_times_articles.dashboard.data.model;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import com.squareup.moshi.Json;
 import java.util.List;
 
 public class NYTimesMostPopularArticlesEntity {
 
-    @SerializedName("status")
-    @Expose
+     @Json(name = "status")
     private String status;
-    @SerializedName("copyright")
-    @Expose
+
+     @Json(name = "copyright")
     private String copyright;
-    @SerializedName("num_results")
-    @Expose
+
+     @Json(name = "num_results")
     private Integer numResults;
-    @SerializedName("results")
-    @Expose
+
+     @Json(name = "results")
     private List<ResultEntity> resultEntities = null;
 
     public String getStatus() {

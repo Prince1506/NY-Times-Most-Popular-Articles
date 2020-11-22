@@ -1,77 +1,105 @@
 package com.mvp_clean.ny_times_articles.dashboard.data.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+import com.squareup.moshi.Json;
 import java.util.List;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
 
-public class ResultEntity {
+public class ResultEntity implements Parcelable {
 
-    @SerializedName("uri")
-    @Expose
+    @Json(name = "uri")
     private String uri;
-    @SerializedName("url")
-    @Expose
+    @Json(name = "url")
     private String url;
-    @SerializedName("id")
-    @Expose
-    private Integer id;
-    @SerializedName("asset_id")
-    @Expose
-    private Integer assetId;
-    @SerializedName("source")
-    @Expose
+
+    @Json(name = "id")
+    private long id;
+
+    @Json(name = "asset_id")
+    private long assetId;
+    @Json(name = "source")
     private String source;
-    @SerializedName("published_date")
-    @Expose
+    @Json(name = "published_date")
     private String publishedDate;
-    @SerializedName("updated")
-    @Expose
+    @Json(name = "updated")
     private String updated;
-    @SerializedName("section")
-    @Expose
+    @Json(name = "section")
     private String section;
-    @SerializedName("subsection")
-    @Expose
+    @Json(name = "subsection")
     private String subsection;
-    @SerializedName("nytdsection")
-    @Expose
+    @Json(name = "nytdsection")
     private String nytdsection;
-    @SerializedName("adx_keywords")
-    @Expose
+    @Json(name = "adx_keywords")
     private String adxKeywords;
-    @SerializedName("column")
-    @Expose
+    @Json(name = "column")
     private Object column;
-    @SerializedName("byline")
-    @Expose
+    @Json(name = "byline")
     private String byline;
-    @SerializedName("type")
-    @Expose
+    @Json(name = "type")
     private String type;
-    @SerializedName("title")
-    @Expose
+    @Json(name = "title")
     private String title;
-    @SerializedName("abstract")
-    @Expose
+    @Json(name = "abstract")
     private String _abstract;
-    @SerializedName("des_facet")
-    @Expose
+    @Json(name = "des_facet")
     private List<String> desFacet = null;
-    @SerializedName("org_facet")
-    @Expose
+    @Json(name = "org_facet")
     private List<String> orgFacet = null;
-    @SerializedName("per_facet")
-    @Expose
+    @Json(name = "per_facet")
     private List<String> perFacet = null;
-    @SerializedName("geo_facet")
-    @Expose
+    @Json(name = "geo_facet")
     private List<String> geoFacet = null;
-    @SerializedName("media")
-    @Expose
+    @Json(name = "media")
     private List<MediumEntity> media = null;
-    @SerializedName("eta_id")
-    @Expose
+    @Json(name = "eta_id")
     private Integer etaId;
+
+
+    protected ResultEntity(Parcel in) {
+        uri = in.readString();
+        url = in.readString();
+        id = in.readLong();
+        if (in.readLong() == 0) {
+            assetId = 0;
+        } else {
+            assetId = in.readLong();
+        }
+        source = in.readString();
+        publishedDate = in.readString();
+        updated = in.readString();
+        section = in.readString();
+        subsection = in.readString();
+        nytdsection = in.readString();
+        adxKeywords = in.readString();
+        byline = in.readString();
+        type = in.readString();
+        title = in.readString();
+        _abstract = in.readString();
+        desFacet = in.createStringArrayList();
+        orgFacet = in.createStringArrayList();
+        perFacet = in.createStringArrayList();
+        geoFacet = in.createStringArrayList();
+        media = in.createTypedArrayList(MediumEntity.CREATOR);
+        if (in.readByte() == 0) {
+            etaId = null;
+        } else {
+            etaId = in.readInt();
+        }
+    }
+
+
+
+    public static final Creator<ResultEntity> CREATOR = new Creator<ResultEntity>() {
+        @Override
+        public ResultEntity createFromParcel(Parcel in) {
+            return new ResultEntity(in);
+        }
+
+        @Override
+        public ResultEntity[] newArray(int size) {
+            return new ResultEntity[size];
+        }
+    };
 
     public String getUri() {
         return uri;
@@ -89,19 +117,19 @@ public class ResultEntity {
         this.url = url;
     }
 
-    public Integer getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public Integer getAssetId() {
+    public Long getAssetId() {
         return assetId;
     }
 
-    public void setAssetId(Integer assetId) {
+    public void setAssetId(Long assetId) {
         this.assetId = assetId;
     }
 
@@ -249,4 +277,13 @@ public class ResultEntity {
         this.etaId = etaId;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+
+    }
 }

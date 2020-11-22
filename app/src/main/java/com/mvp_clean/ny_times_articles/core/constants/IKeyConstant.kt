@@ -8,6 +8,7 @@ interface IKeyConstant {
         val noInternet = "noInternet"
         val apiKeyVal = "u9PpLUgAgfYkGZAxKAv5QMlnnwh5BRaE"
         val apiKeyKey = "api-key"
+        val articleMostViewedList = "articleMostViewedList"
     }
 
 }

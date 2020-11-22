@@ -1,6 +1,7 @@
 package com.mvp_clean.ny_times_articles.core.network;
 
 
+import com.mvp_clean.ny_times_articles.BuildConfig;
 import com.mvp_clean.ny_times_articles.core.constants.IKeyConstant;
 
 import java.util.concurrent.TimeUnit;
@@ -24,7 +25,7 @@ public class NetworkHelper {
     public <T> T createRetrofitApi(final String url, final Class<T> service) {
         try {
             HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
-            if (true/*BuildConfig.IS_DEBUG*/) {
+            if (BuildConfig.IS_DEBUG) {
                 logging.setLevel(HttpLoggingInterceptor.Level.BODY);
             } else {
                 logging.setLevel(HttpLoggingInterceptor.Level.NONE);

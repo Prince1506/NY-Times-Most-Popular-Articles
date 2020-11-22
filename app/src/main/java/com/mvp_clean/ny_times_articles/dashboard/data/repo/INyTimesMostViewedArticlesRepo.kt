@@ -7,7 +7,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-internal interface IVideosRepo {
+internal interface INyTimesMostViewedArticlesRepo {
 
     @GET("svc/mostpopular/v2/viewed/{day}.json")
     fun getNyTimesMostViewedArticles(

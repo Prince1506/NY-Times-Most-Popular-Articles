@@ -4,28 +4,42 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.mvp_clean.ny_times_articles.R
+import com.mvp_clean.ny_times_articles.core.constants.IKeyConstant
+import com.mvp_clean.ny_times_articles.core.view.fragments.BaseFragment
+import com.mvp_clean.ny_times_articles.dashboard.domain.NyTimesMostViewArticlesViewModels
+import com.mvp_clean.ny_times_articles.dashboard.view.adapters.NYTimeseMostViewedArticlesAdapter
+import kotlinx.android.synthetic.main.fragment_home.*
 
-class HomeFragment : Fragment() {
+class HomeFragment : BaseFragment() {
 
     private lateinit var homeViewModel: HomeViewModel
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
-        homeViewModel =
-                ViewModelProvider(this).get(HomeViewModel::class.java)
+
         val root = inflater.inflate(R.layout.fragment_home, container, false)
-        val textView: TextView = root.findViewById(R.id.text_home)
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
         return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        var mostViewedArticlesList =
+            arguments?.getParcelable<NyTimesMostViewArticlesViewModels>(IKeyConstant.articleMostViewedList)!!
+
+        showList(mostViewedArticlesList)
+    }
+
+    fun showList(mostViewedArticlesList: NyTimesMostViewArticlesViewModels) {
+        rv_nytimes_articles_mostviewd_list.adapter = NYTimeseMostViewedArticlesAdapter(
+            this,
+            mostViewedArticlesList.resultEntities
+        )
+
+        rv_nytimes_articles_mostviewd_list.layoutManager =  LinearLayoutManager(getActivity(),
+        LinearLayoutManager.VERTICAL, false);
     }
 }

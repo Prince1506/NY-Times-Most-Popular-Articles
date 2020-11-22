@@ -1,24 +1,23 @@
 package com.mvp_clean.ny_times_articles.dashboard.view.activities
 
+import android.app.Fragment
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
-import androidx.appcompat.widget.Toolbar
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import com.mvp_clean.ny_times_articles.R
 import com.mvp_clean.ny_times_articles.core.callback.IRetryCallBack
+import com.mvp_clean.ny_times_articles.core.constants.IKeyConstant
 import com.mvp_clean.ny_times_articles.core.di.CoreDI
 import com.mvp_clean.ny_times_articles.core.view.activities.BaseActivity
 import com.mvp_clean.ny_times_articles.dashboard.domain.NyTimesMostViewArticlesViewModels
 import com.mvp_clean.ny_times_articles.dashboard.view.INyTimesDashboardView
+import com.mvp_clean.ny_times_articles.dashboard.view.fragments.home.HomeFragment
 import com.mvp_clean.ny_times_articles.dashboard.view.presenter.NyTimesDashboardPresenter
+import kotlinx.android.synthetic.main.app_bar_main.*
 import javax.inject.Inject
 
 class NyTimesDashboardActivity : BaseActivity(), INyTimesDashboardView, IRetryCallBack {
@@ -40,26 +39,28 @@ class NyTimesDashboardActivity : BaseActivity(), INyTimesDashboardView, IRetryCa
     }
 
     private fun setupNavigationDrawer() {
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)
+//        val toolbar: Toolbar = findViewById(R.id.toolbar)
+//        val fab: FloatingActionButton = findViewById(R.id.fab)
 
-        val fab: FloatingActionButton = findViewById(R.id.fab)
+        setSupportActionBar(toolbar)
 
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
 
+/*
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
         val navController = findNavController(R.id.nav_host_fragment)
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow
-            ), drawerLayout
+            ), drawer_layout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
+        nav_view.setupWithNavController(navController)
+*/
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -73,10 +74,40 @@ class NyTimesDashboardActivity : BaseActivity(), INyTimesDashboardView, IRetryCa
     }
 
     override fun showRetry() {
-        TODO("Not yet implemented")
     }
 
     override fun showArticles(nyTimesMostViewArticlesViewModels: NyTimesMostViewArticlesViewModels) {
-        TODO("Not yet implemented")
+        val bundle = Bundle()
+        bundle.putParcelable(IKeyConstant.articleMostViewedList, nyTimesMostViewArticlesViewModels)
+        changeFragment(HomeFragment(), bundle, false )
     }
+
+    fun changeFragment(fragment: androidx.fragment.app.Fragment,
+                       bundle: Bundle?,
+                       addToBackStack: Boolean) {
+
+        try {
+            if (isNetworkAvailable(this)) {
+                if (!isFinishing && !isDestroyed) {
+                    val fm = supportFragmentManager
+                    val ft = fm.beginTransaction()
+                    if (bundle != null) {
+                        fragment.arguments = bundle
+                    }
+                    Log.d("nameclass", fragment.javaClass.simpleName)
+                    ft.replace(R.id.nav_host_fragment, fragment, fragment.javaClass.simpleName)
+                    if (addToBackStack) {
+                        ft.addToBackStack(null)
+                    }
+                    ft.commitAllowingStateLoss()
+                }
+            } else {
+                startServerApiErrorScreen(IKeyConstant.noInternet)
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+
 }

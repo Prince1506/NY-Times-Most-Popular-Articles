@@ -31,8 +31,10 @@ public class NYTimeArticlesDashboardUseCase extends UseCase<Integer, NYTimesMost
     @NotNull
     @Override
     protected Observable<NYTimesMostPopularArticlesDataModel> createUseCaseObservable(Integer days) {
-        return NYTimesMostViewedArticlesRepo.getNyTimesMostViewedArticles(days, IKeyConstant.Companion.getApiKeyVal()).
-                map(nyTimesMostPopularArticlesResponseEntityToDataMapper::mapEntityToData);
+        return NYTimesMostViewedArticlesRepo.getNyTimesMostViewedArticles(
+                days,
+                IKeyConstant.Companion.getApiKeyVal()
+        ).map(nyTimesMostPopularArticlesResponseEntityToDataMapper::mapEntityToData);
     }
 
 }
