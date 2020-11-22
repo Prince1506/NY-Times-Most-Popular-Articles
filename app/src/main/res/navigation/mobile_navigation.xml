@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.mvp_clean.NY_Times_Articles.ui.home.HomeFragment"
+        android:name="com.mvp_clean.ny_times_articles.dashboard.view.fragments.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="com.mvp_clean.NY_Times_Articles.ui.gallery.GalleryFragment"
+        android:name="com.mvp_clean.ny_times_articles.dashboard.view.fragments.gallery.GalleryFragment"
         android:label="@string/menu_gallery"
         tools:layout="@layout/fragment_gallery" />
 
     <fragment
         android:id="@+id/nav_slideshow"
-        android:name="com.mvp_clean.NY_Times_Articles.ui.slideshow.SlideshowFragment"
+        android:name="com.mvp_clean.ny_times_articles.dashboard.view.fragments.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
 </navigation>

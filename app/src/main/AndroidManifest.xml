@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.mvp_clean.NY_Times_Articles">
+    package="com.mvp_clean.ny_times_articles">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
+        android:name="com.mvp_clean.ny_times_articles.core.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -10,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NYTimesArticles">
         <activity
-            android:name=".MainActivity"
+            android:name="com.mvp_clean.ny_times_articles.dashboard.view.activities.NyTimesDashboardActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.NYTimesArticles.NoActionBar">
             <intent-filter>
