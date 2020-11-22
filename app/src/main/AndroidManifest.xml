@@ -13,7 +13,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.NYTimesArticles">
+        android:theme="@style/Theme.NYTimesArticles"
+        android:fullBackupContent="@xml/backup_descriptor">
         <activity
             android:name="com.mvp_clean.ny_times_articles.dashboard.view.activities.NyTimesDashboardActivity"
             android:label="@string/app_name"

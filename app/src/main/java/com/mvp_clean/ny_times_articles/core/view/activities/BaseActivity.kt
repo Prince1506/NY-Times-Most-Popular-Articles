@@ -2,7 +2,6 @@ package com.mvp_clean.ny_times_articles.core.view.activities
 
 import android.content.Context
 import android.net.ConnectivityManager
-import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -17,12 +16,7 @@ open class BaseActivity : AppCompatActivity(), IBaseView {
 
     private var progressDialog: KProgressHUD? = null
 
-    companion object {
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    companion object;
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         try {

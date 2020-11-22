@@ -22,7 +22,7 @@ import javax.inject.Inject
 class NyTimesDashboardActivity : BaseActivity(), INyTimesDashboardView, IRetryCallBack {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
-    val previousDate = 1
+    private val previousDate = 1
 
     var nyTimesDashboardPresenter: NyTimesDashboardPresenter? = null
     @Inject set
@@ -81,9 +81,9 @@ class NyTimesDashboardActivity : BaseActivity(), INyTimesDashboardView, IRetryCa
         changeFragment(NYTimesHomeFragment(), bundle, false )
     }
 
-    fun changeFragment(fragment: androidx.fragment.app.Fragment,
-                       bundle: Bundle?,
-                       addToBackStack: Boolean) {
+    private fun changeFragment(fragment: androidx.fragment.app.Fragment,
+                               bundle: Bundle?,
+                               addToBackStack: Boolean) {
 
         try {
             if (isNetworkAvailable(this)) {

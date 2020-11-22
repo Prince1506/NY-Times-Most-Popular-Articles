@@ -9,20 +9,11 @@ import com.mvp_clean.ny_times_articles.dashboard.view.activities.NyTimesDashboar
 import java.net.SocketTimeoutException
 import javax.inject.Inject
 
-class NyTimesDashboardPresenter :
-    BasePresenter<INyTimesDashboardView>, INyTimesDashboardPresenter{
-
-    public lateinit var nYTimeArticlesDashboardUseCase: NYTimeArticlesDashboardUseCase
-    public lateinit var nyTimesMostPopularArticlesResponseDataToViewMapper: NYTimesMostPopularArticlesResponseDataToViewMapper
-
-    @Inject
-    public constructor(
-        nYTimeArticlesDashboardUseCase: NYTimeArticlesDashboardUseCase,
-        nyTimesMostPopularArticlesResponseDataToViewMapper: NYTimesMostPopularArticlesResponseDataToViewMapper
-    ) {
-        this.nYTimeArticlesDashboardUseCase = nYTimeArticlesDashboardUseCase
-        this.nyTimesMostPopularArticlesResponseDataToViewMapper = nyTimesMostPopularArticlesResponseDataToViewMapper
-    }
+class NyTimesDashboardPresenter @Inject constructor(
+    val nYTimeArticlesDashboardUseCase: NYTimeArticlesDashboardUseCase,
+    val nyTimesMostPopularArticlesResponseDataToViewMapper: NYTimesMostPopularArticlesResponseDataToViewMapper
+) :
+    BasePresenter<INyTimesDashboardView>(), INyTimesDashboardPresenter{
 
     override fun getArticles(previousDate: Int) {
             if (!(view?.isNetworkAvailable(view as NyTimesDashboardActivity?))!!) {
@@ -32,7 +23,8 @@ class NyTimesDashboardPresenter :
                 )
             } else {
                 view?.showProgress()
-                nYTimeArticlesDashboardUseCase?.execute(previousDate)?.subscribe({ videoResponseDataModel ->
+                nYTimeArticlesDashboardUseCase.execute(previousDate)
+                    ?.subscribe({ videoResponseDataModel ->
                         if (view != null) {
                             view?.showArticles(
                                 nyTimesMostPopularArticlesResponseDataToViewMapper.mapDataToViewMapper(

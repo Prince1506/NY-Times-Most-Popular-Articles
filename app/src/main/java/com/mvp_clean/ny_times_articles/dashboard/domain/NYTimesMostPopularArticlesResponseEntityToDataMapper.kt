@@ -10,9 +10,6 @@ class NYTimesMostPopularArticlesResponseEntityToDataMapper @Inject constructor()
     ): NyTimesMostViewArticlesDataModel
 =
             NyTimesMostViewArticlesDataModel(
-                nyTimesMostPopularArticlesEntity.status,
-                nyTimesMostPopularArticlesEntity.copyright,
-                nyTimesMostPopularArticlesEntity.numResults,
                 nyTimesMostPopularArticlesEntity.resultEntities
             )
 

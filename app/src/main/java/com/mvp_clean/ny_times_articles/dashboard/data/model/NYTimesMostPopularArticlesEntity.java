@@ -15,38 +15,10 @@ public class NYTimesMostPopularArticlesEntity {
     private Integer numResults;
 
      @Json(name = "results")
-    private List<ResultEntity> resultEntities = null;
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getCopyright() {
-        return copyright;
-    }
-
-    public void setCopyright(String copyright) {
-        this.copyright = copyright;
-    }
-
-    public Integer getNumResults() {
-        return numResults;
-    }
-
-    public void setNumResults(Integer numResults) {
-        this.numResults = numResults;
-    }
+    private final List<ResultEntity> resultEntities = null;
 
     public List<ResultEntity> getResultEntities() {
         return resultEntities;
-    }
-
-    public void setResultEntities(List<ResultEntity> resultEntities) {
-        this.resultEntities = resultEntities;
     }
 
 }

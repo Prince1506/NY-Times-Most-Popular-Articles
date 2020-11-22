@@ -16,8 +16,7 @@ class NYTimeseMostViewedArticlesAdapter(
     resultEntities: List<ResultEntity>
 ) : RecyclerView.Adapter<NYTimeseMostViewedArticlesAdapter.MyViewHolder>() {
 
-    val homeFragment = NYTimesHomeFragment
-    val resultEntities = resultEntities
+    private val resultEntities = resultEntities
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -26,7 +25,7 @@ class NYTimeseMostViewedArticlesAdapter(
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.bindArticleUiToData(resultEntities.get(position))
+        holder.bindArticleUiToData(resultEntities[position])
     }
 
     override fun getItemCount(): Int = resultEntities.size

@@ -9,9 +9,6 @@ class NYTimesMostPopularArticlesResponseDataToViewMapper @Inject constructor() {
     ): NyTimesMostViewArticlesViewModel =
 
         NyTimesMostViewArticlesViewModel(
-            nyTimesMostPopularArticlesDataModel.status,
-            nyTimesMostPopularArticlesDataModel.copyright,
-            nyTimesMostPopularArticlesDataModel.numResults,
             nyTimesMostPopularArticlesDataModel.resultEntities
         )
 

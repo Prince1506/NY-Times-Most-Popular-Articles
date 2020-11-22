@@ -14,32 +14,30 @@ import kotlinx.android.synthetic.main.fragment_home.*
 
 class NYTimesHomeFragment : BaseFragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
-        return root
+        return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        var mostViewedArticlesList =
+        val mostViewedArticlesList =
             arguments?.getParcelable<NyTimesMostViewArticlesViewModel>(IKeyConstant.articleMostViewedList)!!
 
         showList(mostViewedArticlesList)
     }
 
-    fun showList(mostViewedArticlesList: NyTimesMostViewArticlesViewModel) {
+    private fun showList(mostViewedArticlesList: NyTimesMostViewArticlesViewModel) {
         rv_nytimes_articles_mostviewd_list.adapter = NYTimeseMostViewedArticlesAdapter(
             this,
             mostViewedArticlesList.resultEntities
         )
 
-        rv_nytimes_articles_mostviewd_list.layoutManager =  LinearLayoutManager(getActivity(),
-        LinearLayoutManager.VERTICAL, false);
+        rv_nytimes_articles_mostviewd_list.layoutManager =  LinearLayoutManager(
+            activity,
+        LinearLayoutManager.VERTICAL, false)
     }
 }

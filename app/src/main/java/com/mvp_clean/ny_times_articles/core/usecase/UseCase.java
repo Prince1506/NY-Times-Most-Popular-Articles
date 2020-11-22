@@ -13,8 +13,6 @@ public abstract class UseCase<P, R> {
 
     final Map<P, Observable<R>> observablesMap = new HashMap<>();
 
-    private final boolean cacheObservable = true;
-
     protected UseCase(final UseCaseComposer useCaseComposer) {
         this.useCaseComposer = useCaseComposer;
     }
@@ -26,6 +24,7 @@ public abstract class UseCase<P, R> {
 
         Observable<R> observable = observablesMap.get(param);
 
+        boolean cacheObservable = true;
         if (observable == null || !cacheObservable) {
 
             try {
@@ -54,7 +53,7 @@ public abstract class UseCase<P, R> {
         }
 
         @Override
-        public void run() throws Exception {
+        public void run() {
             observablesMap.remove(param);
         }
     }

@@ -3,6 +3,8 @@ package com.mvp_clean.ny_times_articles.core.usecase;
 
 
 import java.util.Map;
+import java.util.Objects;
+
 import io.reactivex.Observable;
 
 public abstract class TwoArgUseCase<A,B,R> extends UseCase<TwoArgUseCase.Pair<A,B>,R> {
@@ -63,7 +65,7 @@ public abstract class TwoArgUseCase<A,B,R> extends UseCase<TwoArgUseCase.Pair<A,
 
             Pair<?, ?> pair = (Pair<?, ?>) o;
 
-            return (first != null ? first.equals(pair.first) : pair.first == null) && (second != null ? second.equals(pair.second) : pair.second == null);
+            return (Objects.equals(first, pair.first)) && (Objects.equals(second, pair.second));
         }
 
         @Override

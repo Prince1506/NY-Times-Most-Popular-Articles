@@ -4,12 +4,9 @@ import android.content.Context;
 
 import com.mvp_clean.ny_times_articles.core.callback.IRetryCallBack;
 import com.mvp_clean.ny_times_articles.core.constants.IKeyConstant;
-import com.mvp_clean.ny_times_articles.dashboard.domain.NYTimeArticlesDashboardUseCase;
-import com.mvp_clean.ny_times_articles.dashboard.domain.NYTimesMostPopularArticlesResponseDataToViewMapper;
 import com.mvp_clean.ny_times_articles.dashboard.domain.NyTimesMostViewArticlesDataModel;
 import com.mvp_clean.ny_times_articles.dashboard.domain.NyTimesMostViewArticlesViewModel;
 import com.mvp_clean.ny_times_articles.dashboard.view.activities.NyTimesDashboardActivity;
-import com.mvp_clean.ny_times_articles.dashboard.view.fragments.home.NYTimesHomeFragment;
 
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
@@ -22,7 +19,6 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.net.SocketTimeoutException;
-import java.util.ArrayList;
 
 import io.reactivex.Observable;
 import static org.mockito.ArgumentMatchers.anyInt;
@@ -30,43 +26,32 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+@SuppressWarnings("deprecation")
 @RunWith(MockitoJUnitRunner.class)
 public class NyTimesDashboardPresenterTest {
 
     // region constants  ----------------------------------------------
-    int previousDay = 1;
+    final int previousDay = 1;
 
     // Region helper fields  ----------------------------------------------
 
 
     // End helper fields ----------------------------------------------
     @Mock
-    NYTimesMostPopularArticlesResponseDataToViewMapper nyTimesMostPopularArticlesResponseDataToViewMapper;
-    @Mock
     NyTimesMostViewArticlesViewModel nyTimesMostViewArticlesViewModel;
     @Mock
-    NYTimeArticlesDashboardUseCase nyTimeArticlesDashboardUseCase;
-    @Mock
     NyTimesMostViewArticlesDataModel nyTimesMostViewArticlesDataModel;
-    @Mock
-    Context context;
     @InjectMocks
     private NyTimesDashboardPresenter SUT;
     @Mock
-    NYTimesHomeFragment iMoviesDashboardView;
-    @Mock
     NyTimesDashboardActivity dashboardActivity;
-    @Mock
-    ArrayList<NyTimesMostViewArticlesViewModel> nyTimesMostViewArticlesViewModels;
-    @Mock
-    private Exception exception;
 
     // End region constants fields ----------------------------------------------
 
 
 
     @Before
-    public void setup() throws Exception {
+    public void setup() {
         SUT.bind(dashboardActivity);
     }
 
@@ -78,7 +63,7 @@ public class NyTimesDashboardPresenterTest {
      *  3. showArticles is called once we obtain success from API.
      */
     @Test
-    public void getArticles_success_showArticles() throws Exception {
+    public void getArticles_success_showArticles() {
         // Arrange
 
         when(dashboardActivity.isNetworkAvailable(dashboardActivity) ).thenReturn(true);
@@ -105,8 +90,9 @@ public class NyTimesDashboardPresenterTest {
      *  When API calls fails
      *  1. Show popup of api call is failed.
      */
+    @SuppressWarnings("deprecation")
     @Test
-    public void getArticles_serverError_serverErrorPopupShown() throws Exception {
+    public void getArticles_serverError_serverErrorPopupShown() {
         // Arrange
         ArgumentCaptor<String> noInternetArgumentCapture = ArgumentCaptor.forClass(String.class);
 
@@ -132,7 +118,7 @@ public class NyTimesDashboardPresenterTest {
      *  1. Show popup of api call timed out
      */
     @Test
-    public void getArticles_timeout_serverErrorPopupShown() throws Exception {
+    public void getArticles_timeout_serverErrorPopupShown() {
         // Arrange
         ArgumentCaptor<String> noInternetArgumentCapture = ArgumentCaptor.forClass(String.class);
 
@@ -154,7 +140,7 @@ public class NyTimesDashboardPresenterTest {
      *  When no internet is available, no internet popup should be shown
      */
     @Test
-    public void getArticles_noInternet_noInternetPopupShown() throws Exception {
+    public void getArticles_noInternet_noInternetPopupShown() {
 
         // Arrange
         ArgumentCaptor<String> noInternetArgumentCapture = ArgumentCaptor.forClass(String.class);

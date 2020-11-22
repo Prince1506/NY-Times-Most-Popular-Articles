@@ -1,6 +1,5 @@
 package com.mvp_clean.ny_times_articles.dashboard.data.repo
 
-import com.mvp_clean.ny_times_articles.core.constants.IKeyConstant
 import com.mvp_clean.ny_times_articles.dashboard.data.model.NYTimesMostPopularArticlesEntity
 import io.reactivex.Observable
 import retrofit2.http.GET

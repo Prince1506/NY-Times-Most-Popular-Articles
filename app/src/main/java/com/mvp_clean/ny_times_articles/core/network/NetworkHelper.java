@@ -15,13 +15,15 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.moshi.MoshiConverterFactory;
 
+@SuppressWarnings("deprecation")
 public class NetworkHelper {
-    int timeout = 5 * 1000;
+    final int timeout = 5 * 1000;
 
     @Inject
     public NetworkHelper() {
     }
 
+    @SuppressWarnings("deprecation")
     public <T> T createRetrofitApi(final String url, final Class<T> service) {
         try {
             HttpLoggingInterceptor logging = new HttpLoggingInterceptor();

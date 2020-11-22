@@ -49,21 +49,18 @@ android {
             dimension "environment"
             buildConfigField "String", 'BASE_URL', "\"https://api.nytimes.com/\""
             buildConfigField "String", "BUILD_VARIANT", "\"uat\""
-            resValue "string", "appln_name", "NYTimes Articles UAT"
 
         }
         staging {
             dimension "environment"
             buildConfigField "String", 'BASE_URL', "\"https://api.nytimes.com/\""
             buildConfigField "String", "BUILD_VARIANT", "\"staging\""
-            resValue "string", "appln_name", "NYTimes Articles Staging"
 
         }
         production {
             dimension "environment"
             buildConfigField "String", 'BASE_URL', "\"https://api.nytimes.com/\""
             buildConfigField "String", "BUILD_VARIANT", "\"production\""
-            resValue "string", "appln_name", "NYTimes Articles"
         }
 
     }
