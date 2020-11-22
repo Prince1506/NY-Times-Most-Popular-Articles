@@ -40,6 +40,7 @@ open class BaseActivity : AppCompatActivity(), IBaseView {
             .setMessage(error)
             .setPositiveButton(getString(R.string.ok)) { dialog, which ->
                 dialog.dismiss()
+                finish()
             }
             .show()
     }
@@ -65,6 +66,7 @@ open class BaseActivity : AppCompatActivity(), IBaseView {
             .setMessage(error)
             .setPositiveButton(getString(R.string.ok)) { dialog, which ->
                 dialog.dismiss()
+                finish()
             }
             .show()
     }
